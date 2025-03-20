@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Table from "./components/Table";
 import useSWR from "swr";
+import { Button } from "react-bootstrap";
+import StacticBackdrop from "./components/create.modal";
 
 export default function Home() {
   // useEffect(() => {
@@ -33,7 +35,12 @@ export default function Home() {
   return (
     <div>
       <h1>Home Page</h1>
-      <div>{data?.length}</div>
+      <div className="flex justify-content-between pb-3">
+        <div>{data?.length}</div>
+        <div>
+          <StacticBackdrop></StacticBackdrop>
+        </div>
+      </div>
       <Table blogs={data} />
       <Link href={"./admin"}> Admin Page </Link>
     </div>
