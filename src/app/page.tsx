@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Table from "./components/Table";
 import useSWR from "swr";
-import { Button } from "react-bootstrap";
 import StacticBackdrop from "./components/create.modal";
 
 export default function Home() {
@@ -19,15 +18,11 @@ export default function Home() {
   //fetch data by SWR
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const { data, error, isloading } = useSWR(
-    "http://localhost:8000/blogs",
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
-  );
+  const { data } = useSWR("http://localhost:8000/blogs", fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
   if (!data) {
     return <div>Is Loading ...</div>;
   }
